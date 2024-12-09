@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabela de Dados</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <h1>Tabela</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th>Observação</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaDados"></tbody>
+    </table>
+    <button onclick="history.back()">Voltar</button>
+
+    <script>
+      const tabelaDados = JSON.parse(localStorage.getItem("tabelaDados")) || [];
+      const tabelaBody = document.getElementById("tabelaDados");
+
+      tabelaDados.forEach((dado) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+                <td>${dado.nome}</td>
+                <td>${dado.email}</td>
+                <td>${dado.telefone}</td>
+                <td>${dado.observacao}</td>
+            `;
+        tabelaBody.appendChild(row);
+      });
+    </script>
+  </body>
+</html>

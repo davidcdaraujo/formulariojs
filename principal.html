@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <title>Formulário</title>
+  </head>
+  <body>
+    <h1>Formulário de Cadastro</h1>
+    <form id="formulario">
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div class="form-group">
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone" required />
+      </div>
+      <div class="form-group">
+        <label for="observacao">Observação:</label>
+        <textarea id="observacao" name="observacao" rows="4"></textarea>
+      </div>
+      <button type="button" onclick="enviarFormulario()">Enviar</button>
+    </form>
+
+    <script>
+      function enviarFormulario() {
+        const nome = document.getElementById("nome").value;
+        const email = document.getElementById("email").value;
+        const telefone = document.getElementById("telefone").value;
+        const observacao = document.getElementById("observacao").value;
+
+        if (!nome || !email || !telefone) {
+          alert("Por favor, preencha todos os campos obrigatórios.");
+          return;
+        }
+
+        const dados = { nome, email, telefone, observacao };
+        let tabelaDados = JSON.parse(localStorage.getItem("tabelaDados")) || [];
+        tabelaDados.push(dados);
+        localStorage.setItem("tabelaDados", JSON.stringify(tabelaDados));
+
+        window.location.href = "tabela.html";
+      }
+    </script>
+  </body>
+</html>
